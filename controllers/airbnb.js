@@ -9,14 +9,14 @@ const createListing = async (req, res) => {
 
 // Get all listings
 const getAllListings = async (req, res) => {
-  const listings = await AirbnbModel.find({});
+  const listings = await AirbnbModel.find({}).sort({ _id: 1 }).limit(50);
   res.status(200).json(listings);
 };
 
 // Get a listing by id
 const getListingById = async (req, res) => {
   const id = req.params.id;
-  const listing = await AirbnbModel.findOne({ _id: id});
+  const listing = await AirbnbModel.findOne({ _id: id });
   if (listing) {
     res.status(200).json(listing);
   } else {
